@@ -1,6 +1,3 @@
-
-# making inline plot
-%matplotlib inline
 # make our code python2 and python3 compatible
 from __future__ import print_function, absolute_import, division
 

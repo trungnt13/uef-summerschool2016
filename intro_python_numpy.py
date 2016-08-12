@@ -1,6 +1,4 @@
-
 # don't need to care about the first 3 lines (just some configuration for ipython notebook)
-%matplotlib inline
 import matplotlib
 matplotlib.use('Agg')
 
