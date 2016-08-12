@@ -61,9 +61,28 @@ plt.xticks([0.4, 1.1, 1.8, 2.6], range(4))
 
 plt.show()
 
-######### [YOUR CODE HERE: Visualize data] ##########
+print('Rad21 peak regions from K562 cell line ')
+tmp = X[np.argmax(y, -1) == 0]
 plt.figure()
-plot_genes(X[:10])
+plot_genes(tmp[:10])
+plt.show()
+
+print('E2F4 peak regions from K562 cell line')
+tmp = X[np.argmax(y, -1) == 1]
+plt.figure()
+plot_genes(tmp[:10])
+plt.show()
+
+print('Nrf1 peak regions from GM12878 cell line')
+tmp = X[np.argmax(y, -1) == 2]
+plt.figure()
+plot_genes(tmp[:10])
+plt.show()
+
+print('BRCA1 peak regions from GM12787 cell line')
+tmp = X[np.argmax(y, -1) == 3]
+plt.figure()
+plot_genes(tmp[:10])
 plt.show()
 
 # For big model LEARNING RATE should be smaller
