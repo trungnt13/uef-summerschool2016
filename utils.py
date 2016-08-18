@@ -278,7 +278,7 @@ def plot_confusion_matrix(cm, labels):
     return axis
 
 
-def plot_weights(x, ax=None, colormap = "Greys", colorbar=False, keep_aspect=True):
+def plot_weights(x, keep_aspect=True):
     '''
     Parameters
     ----------
@@ -318,15 +318,12 @@ def plot_weights(x, ax=None, colormap = "Greys", colorbar=False, keep_aspect=Tru
     '''
     from matplotlib import pyplot as plt
 
-    if colormap is None:
-        colormap = plt.cm.Greys
-
     if x.ndim > 2:
         raise ValueError('No support for > 2D')
     elif x.ndim == 1:
         x = x[:, None]
 
-    ax = ax if ax is not None else plt.gca()
+    ax = plt.gca()
     if keep_aspect:
         ax.set_aspect('equal', 'box')
     # ax.tick_params(axis='both', which='major', labelsize=6)
@@ -334,20 +331,15 @@ def plot_weights(x, ax=None, colormap = "Greys", colorbar=False, keep_aspect=Tru
     ax.set_yticks([])
     ax.axis('off')
     ax.set_title(str(x.shape), fontsize=6)
-    img = ax.pcolorfast(x, cmap=colormap, alpha=0.8)
+    img = ax.pcolorfast(x, cmap='Greys', alpha=0.8)
     plt.grid(True)
 
-    if colorbar == 'all':
-        fig = ax.get_figure()
-        axes = fig.get_axes()
-        fig.colorbar(img, ax=axes)
-    elif colorbar:
-        plt.colorbar(img, ax=ax)
+    plt.colorbar(img, ax=ax)
 
     return ax
 
 
-def plot_weights4D(x, colormap = "Greys"):
+def plot_weights4D(x):
     '''
     Example
     -------
@@ -355,8 +347,6 @@ def plot_weights4D(x, colormap = "Greys"):
     >>> x = np.random.rand(32, 28, 28)
     >>> dnntoolkit.visual.plot_conv_weights(x)
     '''
-    if colormap is None:
-        colormap = plt.cm.Greys
 
     shape = x.shape
     if len(shape) != 4:
@@ -384,7 +374,7 @@ def plot_weights4D(x, colormap = "Greys"):
             ax.set_yticks([])
             ax.axis('off')
             # image data: no idea why pcolorfast flip image vertically
-            img = ax.pcolorfast(imgs[count - 1][::-1, :], cmap=colormap, alpha=0.9)
+            img = ax.pcolorfast(imgs[count - 1][::-1, :], cmap='Reds', alpha=0.9)
 
     plt.tight_layout()
     # colorbar
